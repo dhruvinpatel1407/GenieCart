@@ -18,14 +18,14 @@ vi.mock("../setup/store/actions", () => ({
               products: [
                 {
                   id: "1",
-                  name: "Shirt 1",
+                  title: "Shirt 1",
                   price: "$29.99",
                   rating: 4,
                   images: ["image1.jpg", "image2.jpg"],
                 },
                 {
                   id: "2",
-                  name: "Shirt 2",
+                  title: "Shirt 2",
                   price: "$39.99",
                   rating: 5,
                   images: ["image3.jpg", "image4.jpg"],
@@ -64,48 +64,54 @@ describe("TopPicksSection", () => {
     vi.clearAllMocks();
   });
 
-  // it("should display the correct number of products", () => { // Removed waitFor
-  //     render(
-  //         <Provider store={mockStore}>
-  //             <MemoryRouter>
-  //                 <TopPicksSection />
-  //             </MemoryRouter>
-  //         </Provider>
-  //     );
-  //     const productLinks = screen.getAllByRole("link");
-  //     expect(productLinks).toHaveLength(2);
-  // });
+  it("should display the correct number of products", async() => {
+    render(
+        <Provider store={mockStore}>
+            <MemoryRouter>
+                <TopPicksSection />
+            </MemoryRouter>
+        </Provider>
+    );
+    
+    await waitFor(() => {
+    const productLinks = screen.getAllByRole("link");
+    expect(productLinks).toHaveLength(2);
+    },{timeout: 3000})
+});
 
-  // it("should render product details correctly", () => { // Removed waitFor
-  //     render(
-  //         <Provider store={mockStore}>
-  //             <MemoryRouter>
-  //                 <TopPicksSection />
-  //             </MemoryRouter>
-  //         </Provider>
-  //     );
-  //     expect(screen.getByText(/Shirt 1/i)).toBeInTheDocument();
-  //     expect(screen.getByText("$29.99")).toBeInTheDocument();
-  //     expect(screen.getByText(/Shirt 2/i)).toBeInTheDocument();
-  //     expect(screen.getByText("$39.99")).toBeInTheDocument();
-  // });
+it("should render product details correctly", async() => {
+    render(
+        <Provider store={mockStore}>
+            <MemoryRouter>
+                <TopPicksSection />
+            </MemoryRouter>
+        </Provider>
+    );
+    await waitFor(() => {
+      expect(screen.getByText(/Shirt 1/i)).toBeInTheDocument();
+      expect(screen.getByText(/\$29\.99/)).toBeInTheDocument(); 
+      expect(screen.getByText(/Shirt 2/i)).toBeInTheDocument();
+      expect(screen.getByText(/\$39\.99/)).toBeInTheDocument(); 
+    });
+});
 
-  // it("should render product images correctly", async () => {
-  //     render(
-  //         <Provider store={mockStore}>
-  //             <MemoryRouter>
-  //                 <TopPicksSection />
-  //             </MemoryRouter>
-  //         </Provider>
-  //     );
+it("should render product images correctly", async () => {
+    render(
+        <Provider store={mockStore}>
+            <MemoryRouter>
+                <TopPicksSection />
+            </MemoryRouter>
+        </Provider>
+    );
 
-  //     await waitFor(() => {
-  //         const image1 = screen.getByAltText(/Shirt 1/i);
-  //         expect(image1).toHaveAttribute("src", "image1.jpg"); // Corrected src
-  //         const image2 = screen.getByAltText(/Shirt 2/i);
-  //         expect(image2).toHaveAttribute("src", "image3.jpg"); // Corrected src
-  //     });
-  // });
+    await waitFor(() => {
+      const image1 = screen.getByAltText(/Shirt 1/i);
+      expect(image1).toHaveAttribute("src", "image2.jpg");
+    
+      const image2 = screen.getByAltText(/Shirt 2/i);
+      expect(image2).toHaveAttribute("src", "image4.jpg");
+    },{timeout : 3000});
+});
 
   it("should call GetMensItemsData action on render", () => {
     render(

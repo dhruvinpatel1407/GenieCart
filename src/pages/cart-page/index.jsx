@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeAllFromCart } from "../../setup/store/actions";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import { ColorRing } from "react-loader-spinner"
 
 // Lazy load icons
 const IoClose = React.lazy(() =>
@@ -74,7 +75,27 @@ const CartPage = () => {
         <div className="flex justify-center items-center h-full py-20 bg-gray-100">
           <div className="text-center p-8 bg-white rounded-xl shadow-lg max-w-md w-full">
             <div className="text-7xl flex justify-center">
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense
+                fallback={
+                  <div>
+                    <ColorRing
+                      visible={true}
+                      height="40"
+                      width="40"
+                      ariaLabel="color-ring-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="color-ring-wrapper"
+                      colors={[
+                        "#e15b64",
+                        "#f47e60",
+                        "#f8b26a",
+                        "#abbd81",
+                        "#849b87",
+                      ]}
+                    />
+                  </div>
+                }
+              >
                 <GiShoppingCart />
               </Suspense>
             </div>
@@ -99,9 +120,9 @@ const CartPage = () => {
         <Suspense fallback={<div>Loading CartButton...</div>}>
           <div className="flex flex-col lg:flex-row gap-4 p-6">
             {/* Cart Table */}
-            <div className="lg:w-2/3 w-full">
+            <div className="lg:w-2/3 w-full overflow-x-auto">
               <table
-                className="min-w-full border border-gray-200 bg-white rounded shadow-md"
+                className="min-w-full table-auto border border-gray-200 bg-white rounded shadow-md"
                 data-testid="cart-table"
               >
                 <thead>

@@ -152,7 +152,7 @@ const SearchButton = ({ onSearch }) => {
 
       {isSearching && filteredProducts.length > 0 && (
         <div
-          className="absolute text-sm ps-4 sm:top-16 sm:right-[30px] top-28 right-[-100px] z-10 bg-white shadow-md w-72 max-h-60 overflow-y-auto"
+          className="absolute text-sm ps-4 sm:top-16 sm:right-[30px] top-28 right-[-50px] z-10 bg-white shadow-md w-72 max-h-60 overflow-y-auto"
           aria-live="assertive"
         >
           <ul className="space-y-2" data-testid="search-menu">

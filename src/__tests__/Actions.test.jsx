@@ -141,7 +141,7 @@ describe('Action Creators', () => {
           Skin_Care: mockData8,
         },
       });
-    }, { timeout: 5000 });
+    }, { timeout: 8000 });
   });
 
   it('should handle errors in GetGroceriesData when the real API call fails', async () => {

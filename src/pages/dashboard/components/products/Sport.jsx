@@ -42,7 +42,7 @@ const SportAccessories = () => {
       {/* Lazy load FilterList if it becomes heavy */}
 
       <React.Suspense fallback={<div>Loading...</div>}>
-        <FilterList allProducts={Data} />
+        <FilterList allProducts={Data} dataTestid="Sport-Items" />
       </React.Suspense>
     </div>
   );

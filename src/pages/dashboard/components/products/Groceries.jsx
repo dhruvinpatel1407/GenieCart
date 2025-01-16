@@ -43,7 +43,7 @@ const Groceries = () => {
       {/* Lazy load FilterList if it becomes heavy */}
 
       <React.Suspense fallback={<div>Loading...</div>}>
-        <FilterList allProducts={Data} />
+        <FilterList allProducts={Data} dataTestid="Grocery-Items" />
       </React.Suspense>
     </div>
   );
