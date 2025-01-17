@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { ColorRing } from "react-loader-spinner";
 
 // Lazy load icons to improve performance by loading them only when needed
 const CgProfile = lazy(() =>
@@ -37,12 +38,12 @@ const ProfileMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const menuRef = useRef(null); 
-  const navigate = useNavigate(); 
+  const menuRef = useRef(null);
+  const navigate = useNavigate();
 
   // Effect to handle user authentication and menu visibility
   useEffect(() => {
-    const userCookie = Cookies.get("user"); 
+    const userCookie = Cookies.get("user");
     // console.log(userCookie);
     if (userCookie) {
       setUser({ name: userCookie });
@@ -88,7 +89,21 @@ const ProfileMenu = () => {
 
   return (
     <div className="relative">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div>
+            <ColorRing
+              visible={true}
+              height="10"
+              width="10"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+            />
+          </div>
+        }
+      >
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           aria-expanded={menuOpen}
@@ -121,7 +136,27 @@ const ProfileMenu = () => {
                   key={index} // Provide key for list items
                   className="mb-3 flex items-center text-gray-700 hover:text-blue-500 transition"
                 >
-                  <Suspense fallback={<div className="text-gray-400">...</div>}>
+                  <Suspense
+                    fallback={
+                      <div className="text-gray-400">
+                        <ColorRing
+                          visible={true}
+                          height="10"
+                          width="10"
+                          ariaLabel="color-ring-loading"
+                          wrapperStyle={{}}
+                          wrapperClass="color-ring-wrapper"
+                          colors={[
+                            "#e15b64",
+                            "#f47e60",
+                            "#f8b26a",
+                            "#abbd81",
+                            "#849b87",
+                          ]}
+                        />
+                      </div>
+                    }
+                  >
                     <span className="mr-3 text-xl">{item.icon}</span>
                   </Suspense>
                   <Link to={item.link} onClick={() => setMenuOpen(false)}>
@@ -132,7 +167,27 @@ const ProfileMenu = () => {
             </ul>
             <div>
               {isUserLoggedIn ? (
-                <Suspense fallback={<div className="text-gray-400">...</div>}>
+                <Suspense
+                  fallback={
+                    <div className="text-gray-400">
+                      <ColorRing
+                        visible={true}
+                        height="10"
+                        width="10"
+                        ariaLabel="color-ring-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="color-ring-wrapper"
+                        colors={[
+                          "#e15b64",
+                          "#f47e60",
+                          "#f8b26a",
+                          "#abbd81",
+                          "#849b87",
+                        ]}
+                      />
+                    </div>
+                  }
+                >
                   <button
                     data-testid="logout-btn"
                     onClick={handleLogout} // Handle logout action

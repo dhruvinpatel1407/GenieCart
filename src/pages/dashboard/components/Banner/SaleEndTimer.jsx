@@ -68,7 +68,7 @@ const SaleCountdown = ({ saleEndTime }) => {
             key={unit.label}
             className="flex flex-col items-center p-4 bg-pink-100 rounded-md shadow-md"
           >
-            <span className="text-5xl font-bold text-pink-700">
+            <span className="md:text-5xl sm:text-4xl text-3xl  font-bold text-pink-700">
               {unit.value || 0} {/* Fallback to 0 if value is undefined */}
             </span>
             <span className="text-sm text-purple-600 sm:text-base">

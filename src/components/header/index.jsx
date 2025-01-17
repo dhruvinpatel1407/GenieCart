@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 import ProfileMenu from "./component/ProfileMenu";
 import SearchButton from "./component/SearchMenu";
 import CategoryMenu from "./component/CategoryMenu";
+import {ColorRing} from "react-loader-spinner";
 
 // Lazy load icons
 const FaShoppingCart = lazy(() =>
@@ -70,7 +71,27 @@ const Navbar = () => {
               toggle={() => toggleMenu("profile")}
               dataTestId="profile-button"
             />
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense
+              fallback={
+                <div>
+                  <ColorRing
+                    visible={true}
+                    height="10"
+                    width="10"
+                    ariaLabel="color-ring-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="color-ring-wrapper"
+                    colors={[
+                      "#e15b64",
+                      "#f47e60",
+                      "#f8b26a",
+                      "#abbd81",
+                      "#849b87",
+                    ]}
+                  />
+                </div>
+              }
+            >
               <Link
                 to="/wishlist"
                 className="hidden lg:block text-gray-300 hover:text-red-500 transition-colors"

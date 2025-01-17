@@ -16,6 +16,8 @@ const Banner = () => {
           {/* Carousel Section  */}
           <div className="w-full flex flex-col gap-2">
             <Carousel
+            autoPlay
+            interval={3000} 
               showThumbs={false}
               infiniteLoop
               showStatus={false}

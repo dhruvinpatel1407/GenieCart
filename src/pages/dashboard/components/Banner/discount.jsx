@@ -2,7 +2,7 @@
 const DiscountCard = () => {
   return (
     <>
-      <div className="relative bg-blue-800 text-white py-6 px-4 md:px-8 shadow-md">
+      <div className="relative md:mt-4 bg-blue-800 text-white py-6 px-4 md:px-8 shadow-md">
         {/* Decoration - Glow Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-teal-500 to-green-400 opacity-30 blur-lg"></div>
 

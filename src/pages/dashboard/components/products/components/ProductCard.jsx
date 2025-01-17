@@ -50,7 +50,7 @@ const ProductList = ({ products }) => {
                 <div className="flex justify-center mb-4">
                   {/* Review Stars */}
                   <span className="text-yellow-500 text-lg">
-                    {"★".repeat(product.rating)}
+                    {"★".repeat(product.rating + 1)}
                     {"☆".repeat(5 - product.rating)}
                   </span>
                 </div>

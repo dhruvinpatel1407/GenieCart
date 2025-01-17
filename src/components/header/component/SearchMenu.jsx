@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchAllData } from "../../../setup/store/actions";
 import PropTypes from "prop-types";
+import { ColorRing } from "react-loader-spinner";
 
 // Lazy load icons
 const FaSearch = lazy(() =>
@@ -115,7 +116,21 @@ const SearchButton = ({ onSearch }) => {
 
   return (
     <div className="relative" ref={searchContainerRef}>
-      <Suspense fallback={<div className="text-white text-sm">Loading...</div>}>
+      <Suspense
+        fallback={
+          <div>
+            <ColorRing
+              visible={true}
+              height="10"
+              width="10"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+            />
+          </div>
+        }
+      >
         <button
           onClick={toggleSearch}
           className="text-white hover:bg-blue-600"
